@@ -79,7 +79,10 @@ def get_summary(ticker_symbol):
     return stock.about()
 
 def get_sentiment(ticker_symbol):
-    return analysis(ticker_symbol)
+    try:
+        return analysis(ticker_symbol)
+    except:
+        return 'Undetermistic'
 
 if __name__ == "__main__":
     main()

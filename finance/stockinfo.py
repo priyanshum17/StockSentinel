@@ -38,5 +38,3 @@ class Stock:
             return self.stock.news
         except requests.exceptions.JSONDecodeError:
             return "No news data available for this stock."
-
-print(Stock('F').stock_info())

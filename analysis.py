@@ -1,12 +1,14 @@
 import requests
 import certifi
+from  apikey import API_KEY 
 from GoogleNews import GoogleNews
 from sources.indianews import IndiaNews
 
 requests.utils.DEFAULT_CA_BUNDLE_PATH = certifi.where()
 
 API_URL = "https://api-inference.huggingface.co/models/ProsusAI/finbert"
-headers = {"Authorization": "Bearer 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"}
+API = f"Bearer {API_KEY} "
+headers = {"Authorization": API}
 
 def query(payload):
 	response = requests.post(API_URL, headers=headers, json=payload)
@@ -19,6 +21,8 @@ def get_title(query):
 	return [story['title'] for story in news.results()]
 
 def analysis(ticker):
+	if API_KEY == '':
+		return 'ENTER THE HUGGING FACE API KEY'
 	query_list = get_title(ticker)
 	index = 0
 	number = 0
@@ -33,5 +37,3 @@ def analysis(ticker):
 		return 'Neutral'
 	else:
 		return 'Negative'
-
-print(analysis('TSLA'))
