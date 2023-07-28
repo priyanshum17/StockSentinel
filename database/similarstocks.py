@@ -14,7 +14,7 @@ def market_cap(ticker):
 
 def get_tickers_by_sector(sector, exclude_ticker):
 
-    connection = sqlite3.connect('/Users/priyanshumehta/StockSentinel/stock_data.db')
+    connection = sqlite3.connect('StockSentinel/stock_data.db')
     cursor = connection.cursor()
 
     if sector is None or sector.strip() == "":
